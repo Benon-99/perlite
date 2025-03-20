@@ -14,9 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="min-h-screen flex flex-col">
         <Navbar />
-        <main>
+        {/* Add pt-16 to account for the fixed navbar height */}
+        <main className="flex-grow pt-16">
           {children}
         </main>
         <Footer />

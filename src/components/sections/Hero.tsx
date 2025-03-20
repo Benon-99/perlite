@@ -1,19 +1,27 @@
 import React from 'react';
+import Link from 'next/link';
 
-const Hero = () => {
+interface HeroProps {
+  title: string;
+  subtitle: string;
+  ctaText: string;
+  ctaLink: string;
+}
+
+const Hero = ({ title, subtitle, ctaText, ctaLink }: HeroProps) => {
   return (
-    <section className="bg-gradient-to-r from-primary to-primary-dark text-white py-24">
+    <section className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-24">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Discover the power of Perlite
+            {title}
           </h1>
           <p className="text-xl mb-8">
-            A modern, lightweight solution for your digital needs
+            {subtitle}
           </p>
-          <button className="bg-white text-primary font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition">
-            Get Started
-          </button>
+          <Link href={ctaLink} className="bg-white text-blue-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition">
+            {ctaText}
+          </Link>
         </div>
       </div>
     </section>
