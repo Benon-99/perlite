@@ -2,10 +2,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
   
   // Handle scroll event to change navbar appearance
   useEffect(() => {
@@ -25,6 +27,17 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // Helper function to determine if a link is active
+  const isActive = (path: string) => {
+    if (path === '/' && pathname === '/') {
+      return true;
+    }
+    if (path !== '/' && pathname.startsWith(path)) {
+      return true;
+    }
+    return false;
+  };
   
   return (
     <nav className={`${
@@ -44,12 +57,60 @@ const Navbar = () => {
           
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-1">
-            <Link href="/" className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Home</Link>
-            <Link href="/about" className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About Us</Link>
-            <Link href="/products" className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Products</Link>
-            <Link href="/applications" className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Applications</Link>
-            <Link href="/resources" className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Resources</Link>
-            <Link href="/contact" className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Contact Us</Link>
+            <Link 
+              href="/" 
+              className={`${isActive('/') 
+                ? 'text-blue-600 bg-blue-50 font-medium' 
+                : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+              } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
+            >
+              Home
+            </Link>
+            <Link 
+              href="/about" 
+              className={`${isActive('/about') 
+                ? 'text-blue-600 bg-blue-50 font-medium' 
+                : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+              } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
+            >
+              About Us
+            </Link>
+            <Link 
+              href="/products" 
+              className={`${isActive('/products') 
+                ? 'text-blue-600 bg-blue-50 font-medium' 
+                : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+              } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
+            >
+              Products
+            </Link>
+            <Link 
+              href="/applications" 
+              className={`${isActive('/applications') 
+                ? 'text-blue-600 bg-blue-50 font-medium' 
+                : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+              } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
+            >
+              Applications
+            </Link>
+            <Link 
+              href="/resources" 
+              className={`${isActive('/resources') 
+                ? 'text-blue-600 bg-blue-50 font-medium' 
+                : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+              } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
+            >
+              Resources
+            </Link>
+            <Link 
+              href="/contact" 
+              className={`${isActive('/contact') 
+                ? 'text-blue-600 bg-blue-50 font-medium' 
+                : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+              } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
+            >
+              Contact Us
+            </Link>
           </div>
           
           {/* Search and CTA */}
@@ -94,12 +155,66 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div className={`${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'} overflow-hidden transition-all duration-300 md:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors duration-200">Home</Link>
-          <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors duration-200">About Us</Link>
-          <Link href="/products" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors duration-200">Products</Link>
-          <Link href="/applications" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors duration-200">Applications</Link>
-          <Link href="/resources" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors duration-200">Resources</Link>
-          <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors duration-200">Contact Us</Link>
+          <Link 
+            href="/" 
+            className={`block px-3 py-2 rounded-md text-base font-medium ${
+              isActive('/') 
+                ? 'text-blue-600 bg-blue-50' 
+                : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+            } transition-colors duration-200`}
+          >
+            Home
+          </Link>
+          <Link 
+            href="/about" 
+            className={`block px-3 py-2 rounded-md text-base font-medium ${
+              isActive('/about') 
+                ? 'text-blue-600 bg-blue-50' 
+                : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+            } transition-colors duration-200`}
+          >
+            About Us
+          </Link>
+          <Link 
+            href="/products" 
+            className={`block px-3 py-2 rounded-md text-base font-medium ${
+              isActive('/products') 
+                ? 'text-blue-600 bg-blue-50' 
+                : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+            } transition-colors duration-200`}
+          >
+            Products
+          </Link>
+          <Link 
+            href="/applications" 
+            className={`block px-3 py-2 rounded-md text-base font-medium ${
+              isActive('/applications') 
+                ? 'text-blue-600 bg-blue-50' 
+                : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+            } transition-colors duration-200`}
+          >
+            Applications
+          </Link>
+          <Link 
+            href="/resources" 
+            className={`block px-3 py-2 rounded-md text-base font-medium ${
+              isActive('/resources') 
+                ? 'text-blue-600 bg-blue-50' 
+                : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+            } transition-colors duration-200`}
+          >
+            Resources
+          </Link>
+          <Link 
+            href="/contact" 
+            className={`block px-3 py-2 rounded-md text-base font-medium ${
+              isActive('/contact') 
+                ? 'text-blue-600 bg-blue-50' 
+                : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+            } transition-colors duration-200`}
+          >
+            Contact Us
+          </Link>
         </div>
         <div className="px-5 pt-4 pb-5 border-t border-gray-200">
           <div className="mt-3 space-y-3">

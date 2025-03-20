@@ -165,7 +165,7 @@ const ContactForm = () => {
     <section className="bg-gradient-to-b from-white to-blue-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-gray-100 max-w-3xl mx-auto">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message from Aleppo, Syria</h3>
           
           {submitSuccess && (
             <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-lg animate-fadeIn">
@@ -173,7 +173,7 @@ const ContactForm = () => {
                 <svg className="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span>Thank you for your message! We will get back to you as soon as possible.</span>
+                <span>Thank you for your message! We will get back to you as soon as possible from Aleppo, Syria.</span>
               </div>
             </div>
           )}
@@ -257,7 +257,7 @@ const ContactForm = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     className={`block w-full pl-10 px-4 py-3 rounded-lg border ${errors.phone ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'} shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50 sm:text-sm`}
-                    placeholder="+1 (555) 123-4567"
+                    placeholder="+21 4440262"
                   />
                 </div>
                 {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
@@ -377,7 +377,7 @@ const ContactForm = () => {
           <div className="mt-8 pt-6 border-t border-gray-200">
             <p className="text-sm text-gray-500">
               By submitting this form, you agree to our <a href="/privacy-policy" className="text-blue-600 hover:text-blue-800">Privacy Policy</a>. 
-              We'll use your information to respond to your inquiry and may process your data as described in our policy.
+              We'll use your information to respond to your inquiry and may process your data as described in our policy from Aleppo, Syria.
             </p>
           </div>
         </div>
